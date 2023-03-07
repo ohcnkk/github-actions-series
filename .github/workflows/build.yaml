@@ -2,6 +2,8 @@ name: Build # workflow
 
 on: # event
   push:
+    branches:
+      - "main"
 
 jobs:
   job1: # job
