@@ -9,8 +9,12 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
-        with:
-          repository: 'actions/setup-node'
 
-      - name: Step 1
-        run: cat README.md
+      - name: Create artifact
+        run: echo "job1 step2" > artifact.txt
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read file
+        run: cat artifact.txt
