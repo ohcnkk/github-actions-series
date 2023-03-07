@@ -1,0 +1,14 @@
+name: Build # workflow
+
+on: # event
+  push:
+
+jobs:
+  job1: # job
+    runs-on: ubuntu-latest # runner
+    steps:
+      - name: Step 1
+        run: echo "hello"
+
+      - name: Step 2
+        run: echo "step 2"
