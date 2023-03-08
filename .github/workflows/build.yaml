@@ -4,6 +4,7 @@ on: # event
   push:
     branches:
       - "main"
+      - "release"
   workflow_dispatch:
     inputs:
       logLevel:
@@ -22,6 +23,12 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ./*
 
       - name: Setup Node
         uses: actions/setup-node@v3

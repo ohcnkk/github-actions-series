@@ -10,5 +10,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
-        run: echo "Deploy"
+      - name: Clone repo
+        uses: actions/checkout@v3
+
+      - name: List Files
+        run: ls -l
