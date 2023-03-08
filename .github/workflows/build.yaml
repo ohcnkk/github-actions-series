@@ -2,6 +2,19 @@ name: Build # workflow
 
 on: # event
   push:
+    branches:
+      - "main"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
 
 jobs:
   job1: # job
