@@ -10,8 +10,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repo
-        uses: actions/checkout@v3
+      - name: Download Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yaml
+          workflow_conclusion: success
+          name: my-artifact
 
       - name: List Files
         run: ls -l
