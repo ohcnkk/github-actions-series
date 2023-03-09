@@ -10,6 +10,25 @@ jobs:
   deploy:
     if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      server:
+        image: ohcnkk/github-actions-series:latest
+        credentials:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        ports:
+          - 8080:8080
     steps:
       - name: Download Artifact
         uses: dawidd6/action-download-artifact@v2
@@ -18,5 +37,5 @@ jobs:
           workflow_conclusion: success
           name: my-artifact
 
-      - name: List Files
-        run: ls -l
+      - name: Run Migration
+        run: PGPASSWORD=postgres psql -h localhost -U postgres -d postgres -f migration.sql
