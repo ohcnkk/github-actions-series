@@ -5,4 +5,4 @@ on:
     
 jobs:
   test: # job
-    uses: .github/workflows/test.yaml
+    uses: ./.github/workflows/test.yaml
