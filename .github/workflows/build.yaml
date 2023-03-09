@@ -9,3 +9,5 @@ on: # event
 jobs:
   test: # job
     uses: ./.github/workflows/test.yaml
+    with:
+      node-version: 16
